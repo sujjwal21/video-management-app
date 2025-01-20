@@ -46,9 +46,10 @@ router.get('/', async (req, res) => {
 
 // Add a new video from Google Drive
 router.post('/', async (req, res) => {
+    
     try {
-        const { title, description, driveFileId, driveFileUrl, tags } = req.body;
-
+        const { title="dummy title", description="dummy description", driveFileId="1", driveFileUrl="url", tags="tags" } = req.body;
+console.log("title, description, driveFileId, driveFileUrl, tags",title, description, driveFileId, driveFileUrl, tags)
         const video = new Video({
             title,
             description,
@@ -57,7 +58,7 @@ router.post('/', async (req, res) => {
             tags: tags || [],
             owner: req.user.userId
         });
-
+        console.log("video",video)
         // Here you would typically verify the Google Drive file and get additional metadata
         // This is a simplified version - you'll need to implement Google Drive API integration
 
